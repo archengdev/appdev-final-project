@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Categorisation #<%= @the_categorisation.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/categorisations">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_categorisation/<%= @the_categorisation.id %>">
+          Delete categorisation
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Food
+      </dt>
+      <dd>
+        <%= @the_categorisation.food_id %>
+      </dd>
+
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_categorisation.category_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_categorisation.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_categorisation.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit categorisation
+    </h2>
+
+    <form action="/modify_categorisation/<%= @the_categorisation.id %>"  method="post" >
+      <div>
+        <label for="food_id_box">
+          Food
+        </label>
+
+        <input type="text" id="food_id_box" name="query_food_id" value="<%= @the_categorisation.food_id %>">
+      </div>
+
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id" value="<%= @the_categorisation.category_id %>">
+      </div>
+
+      <button>
+        Update categorisation
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

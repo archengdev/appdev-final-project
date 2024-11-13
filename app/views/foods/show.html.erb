@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Food #<%= @the_food.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/foods">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_food/<%= @the_food.id %>">
+          Delete food
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Image url
+      </dt>
+      <dd>
+        <%= @the_food.image_url %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_food.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_food.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_food.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit food
+    </h2>
+
+    <form action="/modify_food/<%= @the_food.id %>"  method="post" >
+      <div>
+        <label for="image_url_box">
+          Image url
+        </label>
+
+        <input type="text" id="image_url_box" name="query_image_url" value="<%= @the_food.image_url %>">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_food.name %>">
+      </div>
+
+      <button>
+        Update food
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
