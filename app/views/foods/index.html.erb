@@ -43,12 +43,8 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
-          Image url
         </th>
 
         <th>
@@ -56,11 +52,11 @@
         </th>
 
         <th>
-          Created at
+          Most Recent Rating
         </th>
 
         <th>
-          Updated at
+          Most Recent Description
         </th>
 
         <th>
@@ -68,13 +64,11 @@
       </tr>
 
       <% @list_of_foods.each do |a_food| %>
+        <% review = a_food.reviews.order({ :created_at => :desc }).at(0)%>
       <tr>
-        <td>
-          <%= a_food.id %>
-        </td>
 
         <td>
-          <%= a_food.image_url %>
+          <img src="<%= a_food.image_url%>" alt="<%=a_food.name%>">
         </td>
 
         <td>
@@ -82,10 +76,10 @@
         </td>
 
         <td>
-          <%= time_ago_in_words(a_food.created_at) %> ago
+          <%= review.rating %>/10
         </td>
         <td>
-          <%= time_ago_in_words(a_food.updated_at) %> ago
+          <%= review.description %>
         </td>
 
         <td>
@@ -98,5 +92,4 @@
     </table>
   </div>
 </div>
-
 <hr>
