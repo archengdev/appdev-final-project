@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   def index
     matching_categories = Category.all
 
-    @list_of_categories = matching_categories.order({ :created_at => :desc })
+    @list_of_categories = matching_categories.sort_by{ |cat| -cat.foods.count}
 
     render({ :template => "categories/index" })
   end

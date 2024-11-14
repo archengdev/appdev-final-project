@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
     matching_reviews = Review.where({ :id => the_id })
 
     @the_review = matching_reviews.at(0)
+    @food = @the_review.food
 
     render({ :template => "reviews/show" })
   end

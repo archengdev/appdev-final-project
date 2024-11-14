@@ -1,56 +1,8 @@
 <div>
   <div>
     <h1>
-      List of all reviews for <%= @user.id%>
+      All reviews
     </h1>
-  </div>
-</div>
-
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new review
-    </h2>
-
-    <form action="/insert_review" method="post">
-      <div>
-        <label for="food_id_box">
-          Food
-        </label>
-
-        <input type="text" id="food_id_box" name="query_food_id">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <div>
-        <label for="rating_box">
-          Rating
-        </label>
-
-        <input type="text" id="rating_box" name="query_rating">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <textarea id="description_box" name="query_description" rows="3"></textarea>
-      </div>
-
-      <button>
-        Create review
-      </button>
-    </form>
   </div>
 </div>
 
@@ -59,16 +11,12 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
+        <th>
+
+        </th>
         <th>
           Food
-        </th>
-
-        <th>
-          User
         </th>
 
         <th>
@@ -92,21 +40,18 @@
       </tr>
 
       <% @list_of_reviews.each do |a_review| %>
+        <% food = a_review.food%>
       <tr>
         <td>
-          <%= a_review.id %>
+         <img src=<%= food.image_url%> alt="<%= food.name%>">
         </td>
 
         <td>
-          <%= a_review.food_id %>
+          <%= food.name %>
         </td>
 
         <td>
-          <%= a_review.user_id %>
-        </td>
-
-        <td>
-          <%= a_review.rating %>
+          <%= a_review.rating %>/10
         </td>
 
         <td>

@@ -9,7 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
+  <body>
+  <a href="/">Home</a>
+  <a href="/foods">Foods</a>
+  <a href="/categories">Categories</a>
+  <a href="/user"><%= current_user.email%></a>
+  </body>
   <body>
     <%= yield %>
   </body>
