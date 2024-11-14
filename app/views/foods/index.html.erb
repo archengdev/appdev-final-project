@@ -74,14 +74,16 @@
         <td>
           <%= a_food.name %>
         </td>
-
+<% if review != nil %>
         <td>
           <%= review.rating %>/10
         </td>
         <td>
           <%= review.description %>
         </td>
-
+<% else %>
+<td>N/A</td><td>N/A</td>
+<% end %>
         <td>
           <a href="/foods/<%= a_food.id %>">
             Show details

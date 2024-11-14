@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Food #<%= @the_food.id %> details
+      <%= @the_food.name%>
     </h1>
 
     <div>
@@ -19,19 +19,7 @@
     </div>
 
     <dl>
-      <dt>
-        Image url
-      </dt>
-      <dd>
-        <%= @the_food.image_url %>
-      </dd>
-
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_food.name %>
-      </dd>
+      <img src=<%=@the_food.image_url%> alt=<%=@the_food.name%>>
 
       <dt>
         Created at
@@ -46,6 +34,27 @@
       <dd>
         <%= time_ago_in_words(@the_food.updated_at) %> ago
       </dd>
+
+      <% reviews = @the_food.reviews.order({ :updated_at => :desc })%>
+      <% review = reviews[0]%>
+      <% if review != nil %>
+      <dt>
+        Average rating
+      </dt>
+      <dd>
+        <% sum = 0%>
+        <% reviews.each do |rev| %>
+        <% sum = sum + rev.rating.to_f%>
+        <% end %>
+        <%= sum/reviews.count %>/10
+      </dd>
+      <dt>
+      Most recent description
+      </dt>
+      <dd>
+      <%= review.description %>
+      </dd>
+      <%end%>
     </dl>
   </div>
 </div>
@@ -129,3 +138,65 @@
     </form>
   </div>
 </div>
+<hr>
+<h2>
+Previous Reviews
+</h2>
+<% if reviews.count > 0 %>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+
+        <th>
+          Rating
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% reviews.each do |a_review| %>
+        <% food = a_review.food%>
+      <tr>
+
+        <td>
+          <%= a_review.rating %>/10
+        </td>
+
+        <td>
+          <%= a_review.description %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_review.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_review.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/reviews/<%= a_review.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<% end %>
+<hr>
