@@ -60,6 +60,32 @@
       </button>
     </form>
   </div>
+  <div>
+  <h2>
+  Add existing food to category
+  </h2>
+    <form action="/insert_categorisation" method="post">
+      <div>
+        <label for="food_id_box">
+          Food
+        </label>
+
+        <input type="text" id="food_id_box" name="query_food_id">
+      </div>
+
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id" disabled>
+      </div>
+
+      <button>
+        Create categorisation
+      </button>
+    </form>
+  </div>
 </div>
 
 <hr>
