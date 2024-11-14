@@ -70,7 +70,13 @@
           Food
         </label>
 
-        <input type="text" id="food_id_box" name="query_food_id">
+        <!--<input type="text" id="food_id_box" name="query_food_id">-->
+        <select name="query_food_id", id="food_id_box">
+        <% otherFoods = Food.all - @the_category.foods %>
+        <% otherFoods.each do |food| %>
+          <option value="<%= food.id %>"><%= food.name %></option>
+          <% end %>
+        </select>
       </div>
 
       <div>
@@ -78,11 +84,12 @@
           Category
         </label>
 
-        <input type="text" id="category_id_box" name="query_category_id" disabled>
+        <input type="text" id="category_id_box" name="query_category_id" value="<%=@the_category.name%>" disabled>
+        <input type="hidden" name="query_category_id" value="<%=@the_category.id%>">
       </div>
 
       <button>
-        Create categorisation
+        Add food to category
       </button>
     </form>
   </div>
@@ -118,6 +125,7 @@ Foods
 
       <% @the_category.foods.each do |a_food| %>
         <% review = a_food.reviews.order({ :created_at => :desc }).at(0)%>
+        
       <tr>
 
         <td>
@@ -127,7 +135,7 @@ Foods
         <td>
           <%= a_food.name %>
         </td>
-
+<% if review != nil %>
         <td>
           <%= review.rating %>/10
         </td>
@@ -141,6 +149,7 @@ Foods
           </a>
         </td>
       </tr>
+      <% end %>
       <% end %>
     </table>
   </div>

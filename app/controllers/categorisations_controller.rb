@@ -21,13 +21,13 @@ class CategorisationsController < ApplicationController
   def create
     the_categorisation = Categorisation.new
     the_categorisation.food_id = params.fetch("query_food_id")
-    the_categorisation.category_id = params.fetch("query_category_id")
-
+    cat_id = params.fetch("query_category_id")
+    the_categorisation.category_id = cat_id
     if the_categorisation.valid?
       the_categorisation.save
-      redirect_to("/categorisations", { :notice => "Categorisation created successfully." })
+      redirect_to("/categories/"+ cat_id, { :notice => "Categorisation created successfully." })
     else
-      redirect_to("/categorisations", { :alert => the_categorisation.errors.full_messages.to_sentence })
+      redirect_to("/categories/" + cat_id, { :alert => the_categorisation.errors.full_messages.to_sentence })
     end
   end
 
