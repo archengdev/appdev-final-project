@@ -1,8 +1,12 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
   def index
+    @user = current_user
+    # @userID = current_user.id
     matching_reviews = Review.all
 
-    @list_of_reviews = matching_reviews.order({ :created_at => :desc })
+    # @list_of_reviews = matching_reviews.order({ :created_at => :desc })
+    @list_of_reviews = @user.reviews
 
     render({ :template => "reviews/index" })
   end

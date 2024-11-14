@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Routes for the Review resource:
-
+  root "reviews#index"
   # CREATE
   post("/insert_review", { :controller => "reviews", :action => "create" })
           

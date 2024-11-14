@@ -1,4 +1,5 @@
 class CategorisationsController < ApplicationController
+  before_action :authenticate_user!
   def index
     matching_categorisations = Categorisation.all
 
