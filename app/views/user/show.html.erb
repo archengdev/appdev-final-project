@@ -10,7 +10,9 @@
     <p>
     Joined on: <%= @user.created_at.strftime("%b %d, %Y")%>
     </p>
-
+    <p>
     <a href="/">Reviews:</a> <%= @user.reviews.count%>
+    </p>
+    <a href="/users/sign_out/">Sign-out</a>
   </div>
 </div>
