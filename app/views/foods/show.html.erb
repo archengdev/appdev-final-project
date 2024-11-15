@@ -46,7 +46,7 @@
         <% reviews.each do |rev| %>
         <% sum = sum + rev.rating.to_f%>
         <% end %>
-        <%= sum/reviews.count %>/10
+        <%= (sum/reviews.count).round(2) %>/10
       </dd>
       <dt>
       Most recent description
@@ -100,28 +100,15 @@
     </h2>
 
     <form action="/insert_review" method="post">
-      <div>
-        <label for="food_id_box">
-          Food
-        </label>
-
-        <input type="text" id="food_id_box" name="query_food_id">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
+        <input type="hidden", name="query_food_id" value="<%= @the_food.id%>">
+        <input type="hidden" name="query_user_id" value="<%= current_user.id %>">
 
       <div>
         <label for="rating_box">
           Rating
         </label>
 
-        <input type="text" id="rating_box" name="query_rating">
+        <input type="number" min="0" max="10" id="rating_box" name="query_rating">
       </div>
 
       <div>

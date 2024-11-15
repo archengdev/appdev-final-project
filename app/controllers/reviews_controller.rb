@@ -31,9 +31,9 @@ class ReviewsController < ApplicationController
 
     if the_review.valid?
       the_review.save
-      redirect_to("/reviews", { :notice => "Review created successfully." })
+      redirect_to("/foods/"+params.fetch("query_food_id"), { :notice => "Review created successfully." })
     else
-      redirect_to("/reviews", { :alert => the_review.errors.full_messages.to_sentence })
+      redirect_to("/foods/"+params.fetch("query_food_id"), { :alert => the_review.errors.full_messages.to_sentence })
     end
   end
 
@@ -57,9 +57,10 @@ class ReviewsController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     the_review = Review.where({ :id => the_id }).at(0)
+    food_id = the_review.food.id
 
     the_review.destroy
 
-    redirect_to("/reviews", { :notice => "Review deleted successfully."} )
+    redirect_to("/foods/"+food_id.to_s, { :notice => "Review deleted successfully."} )
   end
 end
