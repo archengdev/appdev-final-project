@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   # CREATE
   post("/insert_categorisation", { :controller => "categorisations", :action => "create" })
           
-  # READ
-  get("/categorisations", { :controller => "categorisations", :action => "index" })
+  # # READ
+  # get("/categorisations", { :controller => "categorisations", :action => "index" })
   
-  get("/categorisations/:path_id", { :controller => "categorisations", :action => "show" })
+  # get("/categorisations/:path_id", { :controller => "categorisations", :action => "show" })
   
   # UPDATE
   
