@@ -3,7 +3,7 @@
     <h1>
       <%= @the_food.name%>
     </h1>
-
+    
     <div>
       <div>
         <a href="/foods">
@@ -20,7 +20,7 @@
 
     <dl>
       <img src=<%=@the_food.image_url%> style="max-width:800px;width:100%" alt=<%=@the_food.name%>>
-
+      
       <dt>
         Created at
       </dt>
@@ -56,6 +56,13 @@
       </dd>
       <%end%>
     </dl>
+
+    Categories:
+    <ul style="margin-top:0px;" >
+    <% @the_food.categories.each do |cat| %>
+    <li> <a href="/categories/<%=cat.id%>"><%= cat.name %> </a></li>
+    <%end%>
+    </ul>
   </div>
 </div>
 
