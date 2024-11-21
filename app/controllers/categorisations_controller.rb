@@ -49,9 +49,10 @@ class CategorisationsController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     the_categorisation = Categorisation.where({ :id => the_id }).at(0)
+    food = the_categorisation.food
 
     the_categorisation.destroy
 
-    redirect_to("/categorisations", { :notice => "Categorisation deleted successfully."} )
+    redirect_to("/foods/" + food.id.to_s, { :notice => "Categorisation deleted successfully."} )
   end
 end

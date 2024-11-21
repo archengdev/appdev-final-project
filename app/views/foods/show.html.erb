@@ -60,7 +60,8 @@
     Categories:
     <ul style="margin-top:0px;" >
     <% @the_food.categories.each do |cat| %>
-    <li> <a href="/categories/<%=cat.id%>"><%= cat.name %> </a></li>
+    <li> <a href="/categories/<%=cat.id%>"><%= cat.name %></a>
+    (<a href="/delete_categorisation/<%= (Categorisation.where({ :food_id => @the_food.id, :category_id => cat.id}))[0].id %>">Remove from category</a>)</li>
     <%end%>
     </ul>
   </div>
