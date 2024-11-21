@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     matching_reviews = Review.all
 
     # @list_of_reviews = matching_reviews.order({ :created_at => :desc })
-    @list_of_reviews = @user.reviews
+    @list_of_reviews = @user.reviews.order({ :created_at => :desc })
 
     render({ :template => "reviews/index" })
   end
